@@ -62,7 +62,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
         @Query("""
                             SELECT l
                             FROM Livro l
-                            WHERE preco > (SELECT AVG(preco) FROM Livro)
+                            WHERE preco > (SELECT AVG())
                         """)
         List<Livro> fbPreco(@Param("media") BigDecimal media);
 
