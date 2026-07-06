@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
-public interface LivroRepository extends JpaRepository<Livro, Long> {
+public interface LivroMinimoRepository extends JpaRepository<Livro, Long> {
         /* JPA */
         List<Livro> findByTitulo(String titulo);
 
