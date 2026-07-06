@@ -1,7 +1,8 @@
 package com.biblioteca.atividade.repository;
 
-import com.biblioteca.atividade.model.Autor;
 import com.biblioteca.atividade.model.Livro;
+import com.biblioteca.atividade.projection.LivroMinimoProjection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -45,14 +46,6 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
         List<Livro> fBAutor(@Param("nomeAutor") String nomeAutor);
 
         @Query("""
-                        SELECT DISTINCT a
-                        FROM Livro l
-                        JOIN l.autores a
-                        WHERE l.id = :idLivro
-                        """)
-        List<Autor> fbLivro(@Param("idLivro") Long idLivro);
-
-        @Query("""
                             SELECT AVG(l.preco) AS media
                             FROM  Livro l
                             WHERE l.editora.id = :id
@@ -91,6 +84,10 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
                         """, nativeQuery = true)
         List<Livro> fbCategoriaFlex(@Param("categoria") String categoria);
 
-        
-
+        @Query(value = """
+                SELECT nome
+                      ,preco
+                FROM Livro
+                """, nativeQuery = true)
+        List<LivroMinimoProjection> fbLivroMinimo();
 }

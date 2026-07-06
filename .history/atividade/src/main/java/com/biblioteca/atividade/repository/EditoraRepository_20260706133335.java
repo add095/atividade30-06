@@ -8,11 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface EditoraRepository extends JpaRepository<Editora, Long> {
 
 @Query("""
-        SELECT new com.biblioteca.atividade.dto.estatisticaEditoraDTO(
-            e.nome,
-            
-        )
-        """;
-    )
+        SELECT new com.biblioteca.dto.atividade
+        """;)
 
 }

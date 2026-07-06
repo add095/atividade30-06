@@ -9,8 +9,7 @@ public interface EditoraRepository extends JpaRepository<Editora, Long> {
 
 @Query("""
         SELECT new com.biblioteca.atividade.dto.estatisticaEditoraDTO(
-            e.nome,
-            
+        
         )
         """;
     )
